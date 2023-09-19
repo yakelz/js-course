@@ -1,27 +1,43 @@
+'use strict';
 const listInput = document.getElementById('listInput');
 const listBtn = document.getElementById('listBtn');
 const list = document.getElementById('list');
-const myArray = document.getElementById('myArray');
+const search = document.getElementById('searchInput');
+const reversed = document.getElementById('reversedInput');
+const reversedText = document.getElementById('reversedText');
+const reversedResult = document.getElementById('reversedResult');
 
 const notes = [
-	{
-		title: 'встать',
-		completed: true,
-	},
-	{
-		title: 'умыться',
-		completed: false,
-	},
+	{ title: 'Купить продукты', completed: false },
+	{ title: 'Закончить проект', completed: true },
+	{ title: 'Сходить в спортзал', completed: false },
+	{ title: 'Почистить дом', completed: true },
+	{ title: 'Прочитать книгу', completed: false },
+	{ title: 'Сделать уроки', completed: true },
+	{ title: 'Позвонить другу', completed: false },
+	{ title: 'Поехать на природу', completed: false },
+	{ title: 'Подготовить ужин', completed: true },
+	{ title: 'Посмотреть фильм', completed: false },
+	{ title: 'Записаться на курс', completed: false },
+	{ title: 'Посадить цветы', completed: true },
+	{ title: 'Прогуляться в парке', completed: false },
+	{ title: 'Написать письмо', completed: true },
+	{ title: 'Убрать в гараже', completed: false },
+	{ title: 'Подарить подарок', completed: false },
+	{ title: 'Посетить музей', completed: true },
+	{ title: 'Сходить в кино', completed: false },
+	{ title: 'Изучить новый язык', completed: false },
+	{ title: 'Помочь соседу', completed: true },
 ];
 
-function render() {
+function render(array = notes) {
 	list.innerHTML = '';
-	if (notes.length === 0) {
+	if (array.length === 0) {
 		list.innerHTML = '<p> Нет заметок </p>';
 		return;
 	}
-	for (let i = 0; i < notes.length; i++) {
-		addNote(notes[i], i);
+	for (let i = 0; i < array.length; i++) {
+		addNote(array[i], i);
 	}
 }
 
@@ -67,4 +83,17 @@ list.onclick = function (event) {
 		notes[index].completed = !notes[index].completed;
 	}
 	render();
+};
+
+search.oninput = function () {
+	const result = notes.filter((item) =>
+		item.title.toLowerCase().includes(search.value.toLowerCase())
+	);
+	render(result);
+};
+
+reversed.oninput = function () {
+	reversedText.innerHTML = reversed.value;
+	const result = reversed.value.split('').toReversed().join('');
+	reversedResult.innerHTML = result;
 };
