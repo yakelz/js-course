@@ -2,11 +2,11 @@
 	"name": "DNKids",
 	"short_name": "DNKids",
 	"description": "DNKids",
-	"start_url": "/",
+	"start_url": "/js-course",
 	"display": "standalone",
 	"background_color": "#ffffff",
 	"theme_color": "#000000",
-	"scope": "/",
+	"scope": "/js-course",
 	"icons": [
 		{
 			"src": "icon.png",
